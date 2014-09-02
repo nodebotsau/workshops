@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>NodeBots AU - UltraSonics Workshop</title>
+
+  <meta name="description" content="Slides to support intermediate teaching on ultrasonic devices">
+  <meta name="author" content="Andrew Fisher">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+  <link rel="stylesheet" href="css/custom.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+    if (window.location.search.match(/print-pdf/gi)) {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = 'css/print/pdf.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+  </script>
+
+  <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <H4>Welcome to</h4>
+        <h1>NodeBots Melbourne<br/>September Workshop</h1>
+        <h2>UltraSonic Sensors</h2>
+        <img class="transparent" src="../img/nodebot.png" alt="Nodebot" width="20%">
+        <aside class="notes">
+            <p>Hi Everyone. thanks for coming along to hack melbourne this evening</p>
+            <p>Tonight's session is the first of our monthly NodeBots sessions that
+            should help develop your skills and increase the sorts of things your
+            NodeBot can do</p>
+
+        </aside>
+      </section>
+      <section>
+        <h2>Agenda</h2>
+        <ul>
+            <li>What are ultrasonic sensors?</li>
+            <li>How do you make them work?</li>
+            <li>Applications</li>
+        </ul>
+      </section>
+
+        <section data-background="img/simplebot.jpg" class="fullimage">
+            <h2>What are ultrasonic sensors?</h2>
+            <aside class="notes">
+                <p>So to start with. Let's look at what these sensors are</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>How they work</h2>
+            <img class="transparent" src="img/hc-sr04-s.jpg" alt="Ultrasonic" width="100%">
+            <aside class="notes">
+            <p>Basically, the sensor has two components, a speaker that emits ultrasonic pulses
+            and a microphone that listens for these pulses. Using a controller we trigger the pulses
+            and then read the value of the microphone.</p>
+        </section>
+
+        <section>
+            <h2>How they work</h2>
+            <img class="transparent" src="img/ultrasound_echo_ranging.jpg" alt="Ultrasonic" width="100%">
+            <aside class="notes">
+            <p>Each pulse is sent out and then reflects off
+            objects that are in front of the sensor. As sound moves fairly fast through air the return
+            takes a few milliseconds to happen generally, though the further an object is away the longer
+            the pulse takes to return.</p>
+            </aside>
+        </section>
+        <section>
+            <h2>Caluculating distance</h2>
+            <p>Speed of sound is: ~340m/s</p>
+            <p>Time to travel 1cm and return: ~58.8us</p>
+            <p>tus / 58.8us = cm</p>
+            <p>eg: 150us / 58.8 = ~2.55cm </p>
+            <aside class="notes">
+
+            <p>As we know the speed of sound in air, we can calculate how long the
+            pulse took to come back to us and then that gives us distance. If we work
+            with a microcontroller directly we have to do this calculation. If we use
+            johnny-five then someone lovely has already taken care of all of this.</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>Wiring</h2>
+            <img class="transparent" src="img/ultrasonic_bb.jpg" alt="Wiring" width="70%">
+            <aside class="notes">
+            <p>So let's look at how to wire this up. You can see we have 4 pins. 5V, GND go to
+            their respective points on the board. Now because an arduino can switch input and
+            output modes on a pin nice and fast, you can join the trigger and echo pins on the US
+            together and join them to a digital pin on the arduino</p>
+            <p>On some micros you may need to use one pin for triggers and the other for receiving
+            the pulses</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>Basic example</h2>
+            <pre><code>
+var five = require("johnny-five"),
+        board = new five.Board();
+
+board.on("ready", function() {
+
+    var ping = new five.Ping(7);
+
+    ping.on("change", function( err, value ) {
+        console.log('Object is ' + this.cm + ' cm away');
+    });
+});  
+            </code></pre>
+            <aside class="notes">
+                <p>Here you can see the code we can use to make this work.</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>Collision stop</h2>
+            <pre><code>
+var five = require("johnny-five"),
+        board = new five.Board();
+
+board.on("ready", function() {
+
+    var ping = new five.Ping(7);
+
+    ping.on("change", function( err, value ) {
+        if (this.cm < 5) {
+            console.log("STOP!!!!");
+        } else {
+            console.log(".");
+        }
+    });
+});  
+            </code></pre>
+            <aside class="notes">
+                <p>Here you can see the code we can use to make this work.</p>
+            </aside>
+        </section>
+        <section>
+            <h2>Applications</h2>
+            <ul>
+                <li>Collision avoidance on a bot</li>
+                <li>Proximity detection (trigger animate / action on proximity)</li>
+                <li>Removal detection (eg door open).</li>
+                <li>Web based sonar detector</li>
+            </ul>
+        </section>
+
+        <section>
+        <h2>Resources</h2>
+        <p>
+          <br><a href="https://github.com/rwaldron/johnny-five">github.com/rwaldron/johnny-five</a>
+        </p>
+        <p><a href="http://node-ardx.org">node-ardx.org</a>
+        </p>
+        <p>
+        <br><a href="https://github.com/nodebotsau/workshops">github.com/nodebotsau/workshops</a>
+        </p>
+        <aside class="notes">
+        </aside>
+      </section>
+
+    </div>
+
+  </div>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+
+  <script>
+    // Full list of configuration options available here:
+     // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      controls: false,
+      progress: true,
+      history: true,
+      center: true,
+
+      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      transition: 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+      // Parallax scrolling
+      // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+      // parallaxBackgroundSize: '2100px 900px',
+
+      // Optional libraries used to extend on reveal.js
+      dependencies: [{
+        src: 'lib/js/classList.js',
+        condition: function() {
+          return !document.body.classList;
+        }
+      }, {
+        src: 'plugin/markdown/marked.js',
+        condition: function() {
+          return !!document.querySelector('[data-markdown]');
+        }
+      }, {
+        src: 'plugin/markdown/markdown.js',
+        condition: function() {
+          return !!document.querySelector('[data-markdown]');
+        }
+      }, {
+        src: 'plugin/highlight/highlight.js',
+        async: true,
+        callback: function() {
+          hljs.initHighlightingOnLoad();
+        }
+      }, {
+        src: 'plugin/zoom-js/zoom.js',
+        async: true,
+        condition: function() {
+          return !!document.body.classList;
+        }
+      }, {
+        src: 'plugin/notes/notes.js',
+        async: true,
+        condition: function() {
+          return !!document.body.classList;
+        }
+      }]
+    });
+  </script>
+
+</body>
+
+</html>
