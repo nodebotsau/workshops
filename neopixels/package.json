@@ -1,0 +1,34 @@
+{
+  "name": "neopixels",
+  "version": "1.0.0",
+  "description": "Package dependencies for neopixel workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodebotsau/workshops.git"
+  },
+  "keywords": [
+    "node-pixel",
+    "neopixel",
+    "arduino",
+    "hardware",
+    "leds"
+  ],
+  "author": "AJFisher <ajfisher.td@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nodebotsau/workshops/issues"
+  },
+  "homepage": "https://github.com/nodebotsau/workshops#readme",
+  "dependencies": {
+    "johnny-five": "^0.10.6",
+    "node-pixel": "^0.8.2",
+    "node-red": "^0.15.2",
+    "node-red-contrib-gpio": "^0.9.1",
+    "node-red-dashboard": "^2.1.0",
+    "nodebots-interchange": "^1.1.2"
+  }
+}
