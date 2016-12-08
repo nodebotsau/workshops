@@ -1,0 +1,28 @@
+{
+  "name": "telstra",
+  "version": "1.0.0",
+  "description": "Workshop packages for Telstra IoT workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodebotsau/workshops.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nodebotsau/workshops/issues"
+  },
+  "homepage": "https://github.com/nodebotsau/workshops#readme",
+  "dependencies": {
+    "johnny-five": "^0.10.6",
+    "mosca": "^2.2.0",
+    "mqtt": "^2.1.3",
+    "node-red": "^0.15.2",
+    "node-red-contrib-gpio": "^0.9.1",
+    "node-red-dashboard": "^2.1.0",
+    "nodebots-interchange": "^1.1.2"
+  }
+}
