@@ -14,6 +14,8 @@ This will install:
 * Johnny Five - JS framework for interacting with hardare (RPi & Arduino)
 * Node Red - a rapid prototyping environment for event / flow orchestration of IoT devices from a browser
 * Node Red plugins - Various plugins to node red that make your life easier and faster.
+    * [Dashboard](https://github.com/node-red/node-red-dashboard) - provides a full UI suite
+    * GPIO - allows interaction with GPIO components. 
 * Mosca - A NodeJS based MQTT broker that provides a message queue
 * mqtt.js - NodeJS command line publication and subscribe clients as well as library
 to interact with MQTT brokers from node or web applications.
