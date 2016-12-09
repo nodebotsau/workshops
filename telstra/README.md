@@ -53,6 +53,9 @@ To run node red, run it with the following command:
 This will then run an application server which you can access via http://localhost:1880
 unless you change the port.
 
+This [blog post](http://developers.sensetecnic.com/article/introduction-to-node-red/) is
+a great introduction to Node Red.
+
 ## Run an MQTT broker
 
 To run Mosca:
