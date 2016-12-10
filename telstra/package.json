@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/nodebotsau/workshops#readme",
   "dependencies": {
+    "botkit": "^0.4.3",
     "johnny-five": "^0.10.6",
     "mosca": "^2.2.0",
     "mqtt": "^2.1.3",
