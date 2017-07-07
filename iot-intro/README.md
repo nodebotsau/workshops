@@ -1,10 +1,20 @@
-# Notes for the Telstra workshop.
+# Notes for the IoT Intro workshop.
 
-Before coming to the workshop please make sure you have cloned this repo and
-installing these dependencies
+## Set up and installation
+
+Start with the [installation process outlined here](https://github.com/nodebotsau/nbdau/blob/master/setup.md)
+if you havne't already.
+
+Then, clone this repository into a folder using:
 
 ```
-cd workshops/telstra
+git clone https://github.com/nodebotsau/workshops
+cd workshops/iot-intro
+```
+
+### Install node dependencies
+
+```
 npm install
 ```
 
@@ -26,7 +36,7 @@ From the repo folder execute the following with your arduino plugged into
 your computer.
 
 ```
-./node_modules/.bin/interchange install StandardFirmata -a uno
+interchange install StandardFirmata -a uno
 ```
 
 Assuming no errors, you're good to go, if you get errors, come talk to us.
