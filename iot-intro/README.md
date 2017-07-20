@@ -3,7 +3,7 @@
 ## Set up and installation
 
 Start with the [installation process outlined here](https://github.com/nodebotsau/nbdau/blob/master/setup.md)
-if you havne't already.
+if you haven't already.
 
 Then, clone this repository into a folder using:
 
@@ -36,7 +36,7 @@ From the repo folder execute the following with your arduino plugged into
 your computer.
 
 ```
-interchange install StandardFirmata -a uno
+./node_modules/.bin/interchange install StandardFirmata -a uno
 ```
 
 Assuming no errors, you're good to go, if you get errors, come talk to us.
@@ -57,7 +57,7 @@ If the LED on pin 13 blinks on and off each second then you should be all good.
 To run node red, run it with the following command:
 
 ```
-./node-modules/.bin/node-red
+./node_modules/.bin/node-red
 ```
 
 This will then run an application server which you can access via http://localhost:1880
