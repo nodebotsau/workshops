@@ -18,12 +18,11 @@
   "homepage": "https://github.com/nodebotsau/workshops#readme",
   "dependencies": {
     "botkit": "^0.4.3",
-    "johnny-five": "^0.10.6",
+    "johnny-five": "^0.15.0",
     "mosca": "^2.2.0",
     "mqtt": "^2.1.3",
-    "node-red": "^0.15.2",
-    "node-red-contrib-gpio": "^0.9.1",
-    "node-red-dashboard": "^2.1.0",
-    "nodebots-interchange": "^1.1.2"
+    "node-red": "^0.18.7",
+    "node-red-contrib-gpio": "^0.14.0",
+    "node-red-dashboard": "^2.9.4"
   }
 }
